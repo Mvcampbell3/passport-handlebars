@@ -15,6 +15,11 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars")
 
+app.use("*", (req, res, next) => {
+  console.log(req.originalUrl);
+  next();
+})
+
 app.use(routes)
 
 const dbase = "passport_handlebars"

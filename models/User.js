@@ -27,3 +27,5 @@ User.prototype.validatePassword = function(password) {
     return result;
   })
 }
+
+module.exports = User;
