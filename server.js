@@ -13,7 +13,17 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.engine("handlebars", exphbs());
+// app.engine("handlebars", exphbs());
+
+
+app.engine("handlebars", exphbs({
+  extname: "handlebars",
+  defaultLayout: "main",
+  layoutsDir: __dirname + '/views/layouts',
+  partialsDir: __dirname + '/views/partials'
+}))
+
+
 app.set("view engine", "handlebars")
 
 app.use(session({ secret: "secretgoeshere", resave: true, saveUninitialized: true }));
