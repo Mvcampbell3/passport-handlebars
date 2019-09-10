@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+
 const UserSchema = mongoose.Schema({
   username: {
     type: String,
@@ -20,12 +21,13 @@ const UserSchema = mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-User.prototype.validatePassword = function(password) {
-  console.log(password, this.password);
-  bcrypt.compare(password, this.password, (err, result) => {
-    if (err) throw err;
-    return result;
-  })
+
+User.prototype.validPassword = function(password) {
+  console.log(password);
+  console.log(this.password);
+  return bcrypt.compareSync(password, this.password);
 }
+
+
 
 module.exports = User;
