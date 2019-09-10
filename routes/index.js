@@ -18,7 +18,7 @@ router.get("/login/signed/:id", (req, res) => {
   const id = req.params.id
   User.findById(id)
     .then(user => {
-      res.render("login", { msg: "You are signed up! Just need to sign in", email: user.email })
+      res.render("login", { msg: "You are signed up! Just need to login", email: user.email })
     })
     .catch(err => {
       console.log(err)

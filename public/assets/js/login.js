@@ -14,6 +14,9 @@ loginBtn.addEventListener("click", function(e) {
     $.ajax("/api/user/login", { method: "POST", data: { email, password } })
       .then(result => {
         console.log(result);
+        if (result.logged) {
+          window.location.replace("/members")
+        }
       })
       .catch(err => console.log(err));
   }
