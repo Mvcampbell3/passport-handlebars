@@ -28,18 +28,21 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link text-white" href="/">Home</a>
         </li>
+        {{#unless username}}
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link text-white" href="/login">Login</a>
         </li>
+        {{/unless}}
         <li class="nav-item">
-          <a class="nav-link" href="/members">Members</a>
+          <a class="nav-link text-white" href="/members">Members</a>
         </li>
       </ul>
-      <span class="navbar-text">
-        Welcome to passport example
-      </span>
+      {{#if username}}
+        <a href="/api/user/logout" class="nav-link text-white">Logout</a>
+      {{/if}}
+
     </div>
   </nav>
 

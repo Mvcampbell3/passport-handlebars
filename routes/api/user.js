@@ -56,4 +56,9 @@ router.get("/drop", (req, res) => {
     .catch(err => res.json(err));
 })
 
+router.get("/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/")
+})
+
 module.exports = router;

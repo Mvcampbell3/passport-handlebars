@@ -14,7 +14,6 @@ router.get("/login", (req, res) => {
 })
 
 router.get("/login/signed/:id", (req, res) => {
-  console.log("route hit")
   const id = req.params.id
   User.findById(id)
     .then(user => {
@@ -22,6 +21,7 @@ router.get("/login/signed/:id", (req, res) => {
     })
     .catch(err => {
       console.log(err)
+      res.status(400).json(err)
     })
 })
 
