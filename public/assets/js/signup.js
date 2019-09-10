@@ -3,7 +3,7 @@ const signBtn = document.getElementById("signBtn");
 signBtn.addEventListener("click", function(e) {
   e.preventDefault();
   console.log("clicked");
-  
+
   const usernamePlace = document.getElementById("username");
   const emailPlace = document.getElementById("email");
   const passwordPlace = document.getElementById("password");
@@ -15,9 +15,14 @@ signBtn.addEventListener("click", function(e) {
   console.log(username, email, password);
 
   if (email && username && password) {
-    $.ajax("/api/user/signup", {method: "POST", data: {email, username, password}})
+    $.ajax("/api/user/signup", { method: "POST", data: { email, username, password } })
       .then(result => {
         console.log(result)
+        console.log(result.success)
+        if (result.success) {
+          console.log("here")
+          window.location.replace(`/login/signed/${result.user}`)
+        }
       })
       .catch(err => {
         console.log(err);
