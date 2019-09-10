@@ -12,17 +12,14 @@ router.get("/", (req, res) => {
 })
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  console.log(req.user);
   res.status(200).json({ logged: true });
 })
 
 router.post("/signup", (req, res) => {
-  console.log(req.body);
   const { email, password, username } = req.body;
 
   User.findOne({ email })
     .then(dbUser => {
-      console.log(dbUser)
       if (!dbUser) {
         const newUser = new User({
           username,
@@ -37,7 +34,6 @@ router.post("/signup", (req, res) => {
             newUser.password = hash;
             newUser.save()
               .then(result => {
-                console.log(result);
                 res.status(201).json({ success: true, user: result._id })
               })
               .catch(err => res.status(400).json(err));
